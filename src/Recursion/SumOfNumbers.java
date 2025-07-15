@@ -5,7 +5,6 @@ public class SumOfNumbers {
         return n+sum(n-1);
     }
     public static void main(String[] args) {
-        int x=sum(5);
-        System.out.println(x);
+        System.out.println(sum(5));
     }
 }
