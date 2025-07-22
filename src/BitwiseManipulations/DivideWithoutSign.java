@@ -2,6 +2,7 @@ package BitwiseManipulations;
 public class DivideWithoutSign {
     public static int divide(int divident, int divisor) {
         if(divisor==0) return Integer.MAX_VALUE;
+        if(divident<Integer.MIN_VALUE && divisor==-1) return Integer.MAX_VALUE;
        long quotient=0;
        boolean isNegative=(divident<0)^(divisor<0);
        long ldividend=Math.abs((long)divident);
@@ -16,7 +17,6 @@ public class DivideWithoutSign {
            ldividend-=temp;
            quotient+=multiple;
        }
-       if(quotient>Integer.MAX_VALUE) return Integer.MAX_VALUE;
        return isNegative?(int)-quotient:(int)quotient;
     }
     public static void main(String[] args) {
