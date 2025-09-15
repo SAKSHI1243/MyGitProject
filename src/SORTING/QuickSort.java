@@ -13,7 +13,7 @@ public class QuickSort {
         int i=start, j=end;
         while (i<pi && j>pi){
             if(ar[i]<ar[pi]) i++;
-            if(ar[j]>ar[pi]) j++;
+            if(ar[j]>ar[pi]) j--;
             if(i<pi && j>pi){
                 int x=ar[i];
                 ar[i]=ar[j];
@@ -31,7 +31,7 @@ public class QuickSort {
         quickSort(ar,pi+1,end);
     }
     public static void main(String[] args) {
-        int []ar={7,2,5,1,3};
+        int []ar={5,8,2,6,9,1};
         quickSort(ar,0,ar.length-1);
         for (int i = 0; i < ar.length ; i++) System.out.print(ar[i]+" ");
     }
