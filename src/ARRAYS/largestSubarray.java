@@ -1,19 +1,6 @@
 package ARRAYS;
 import java.util.*;
 public class largestSubarray {
-    public static int longestSubarray(int []nums, int k){
-       int[] prefixSum= new int[nums.length];
-       int max=0;
-       prefixSum[0]=nums[0];
-       for(int i=1;i<nums.length;i++)  prefixSum[i]=prefixSum[i-1]+nums[i];
-       for(int i=0;i<prefixSum.length;i++){
-           if(prefixSum[i]==k) max= Math.max(max,i+1);
-           for(int j=0;j<i;j++){
-               if(prefixSum[i]-prefixSum[j]== k)  max= Math.max(max,i-j);
-           }
-       }
-       return max;
-    }
     public static int largestSubarray(int []nums, int k){
         HashMap<Integer,Integer> mp= new HashMap<>();
         mp.put(0,-1);
@@ -25,9 +12,23 @@ public class largestSubarray {
         }
         return max;
     }
+    public static int findLengthOfLargestSubarray(int[]ar, long k){
+        int l=0,r=0,len=0;
+        long sum=ar[0];
+        while (r<ar.length){
+            while (l<=r && sum>k){
+                sum-=ar[l];
+                l++;
+            }
+            if(sum==k) len=Math.max(len,r-l+1);
+            r++;
+            if (r<ar.length) sum+=ar[r];
+        }
+        return len;
+    }
     public static void main(String[] args) {
         int []nums={10,5,2,7,1,9};
-        int y=largestSubarray(nums,15);
+        int y=findLengthOfLargestSubarray(nums,15);
         System.out.println(y);
     }
 }
