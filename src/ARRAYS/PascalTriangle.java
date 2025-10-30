@@ -16,38 +16,34 @@ public class PascalTriangle{
         return x;
     }
     //to print the elements of the specific row
-    public static void printRowElements(int n){
-        int ans=1;
-        System.out.print(ans+" ");
-        for(int col=1;col<n;col++){
-            ans*=(n-col);
-            ans/=col;
-            System.out.print(ans+" ");
+    public static List<Integer>getRow(int n){
+        List<Integer>row=new ArrayList<>();
+        for (int i = 0; i <=n; i++) {
+            row.add(1);
+            for (int j = i-1; j >=0 ; j--) row.set(j,row.get(j)+row.get(j-1));
         }
-        System.out.println();
-    }
-    //to generate the elements of given row
-    public static List<Integer> generateRow(int n){
-        ArrayList<Integer> ansRow= new ArrayList<>();
-        ansRow.add(1);
-        int ans=1;
-        for(int col=1;col<=n;col++){
-            ans*=(n-col+1);
-            ans/=col;
-            ansRow.add(ans);
-        }
-        return ansRow;
+        return row;
     }
     //to generate pascal's triangle of given number of rows
-    public static List<List<Integer>> pascalTriangle(int n){
-        List<List<Integer>> ans= new ArrayList<>();
-        for(int row=0;row<n;row++) ans.add(generateRow(row));
-        return ans;
+    public static List<List<Integer>>pascalTriangle(int n){
+        List<List<Integer>>triangle=new ArrayList<>();
+        if(n<=0) return triangle;
+        for (int i = 0; i < n; i++) {
+            List<Integer>row=new ArrayList<>();
+            for (int j = 0; j < n; j++) {
+                if(j==0||i==j) row.add(1);
+                else row.add(triangle.get(i-1).get(j-1)+triangle.get(i-1).get(j));
+            }
+            triangle.add(row);
+        }
+        return triangle;
     }
     public static void main(String[] args) {
     int x=pascal(5,3);
     System.out.println(x);
-    printRowElements(5);
+    List<Integer>row=getRow(5);
+        for (int i :row) System.out.print(i+" ");
+        System.out.println();
     List<List<Integer>> ans=pascalTriangle(7);
         for (int i = 0; i < ans.size(); i++) System.out.println(ans.get(i));
     }
