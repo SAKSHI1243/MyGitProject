@@ -50,7 +50,8 @@ public class ThreeSum {
                 else {
                     List<Integer> temp= Arrays.asList(ar[i],ar[j],ar[k]);
                     ans.add(temp);
-                    j++;k--;
+                    j++;
+                    k--;
                     while(j<k && ar[j-1]==ar[j]) j++;
                     while (j<k && ar[k+1]==ar[k]) k--;
                 }
